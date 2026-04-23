@@ -1,0 +1,1403 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proposta Comercial | DRAW THE CASE</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #082820;
+      --bg-card: #0e3a2c;
+      --bg-card-light: #134035;
+      --green-muted: #3d7a65;
+      --green-label: #5aaa8c;
+      --white: #f0ede8;
+      --white-dim: rgba(240, 237, 232, 0.55);
+      --white-faint: rgba(240, 237, 232, 0.15);
+      --gold: #c9a96e;
+      --border: rgba(255, 255, 255, 0.08);
+      --border-card: rgba(255, 255, 255, 0.11);
+      --radius: 16px;
+      --radius-lg: 24px;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ── NOISE TEXTURE ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.03;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── UTILS ── */
+    .container {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 0 32px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--green-label);
+    }
+
+    .serif {
+      font-family: 'Playfair Display', serif;
+    }
+
+    .italic {
+      font-style: italic;
+    }
+
+    /* ── NAVBAR ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 20px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: linear-gradient(to bottom, rgba(8, 40, 32, 0.98) 0%, transparent 100%);
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nav-logo {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: var(--bg-card-light);
+      border: 1px solid var(--border-card);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .nav-name {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .nav-sub {
+      font-size: 10px;
+      color: var(--green-label);
+      letter-spacing: 0.05em;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .nav-tag {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--white-dim);
+    }
+
+    .nav-dot {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav-dot span {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--green-label);
+    }
+
+    svg {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    nav svg {
+      filter: drop-shadow(0 0 0 rgba(0, 0, 0, 0));
+    }
+
+    .footer-logo svg {
+      filter: brightness(0.95) opacity(0.9);
+    }
+
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 50vh;
+      display: flex;
+      align-items: flex-end;
+      padding: 64px 0 40px;
+      position: relative;
+    }
+
+    .hero-inner {
+      width: 100%;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 0 16px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-card {
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-lg);
+      padding: 48px 40px 40px;
+      background: rgba(14, 58, 44, 0.3);
+      backdrop-filter: blur(2px);
+      animation: fadeUp 1s ease both;
+    }
+
+    .hero-badge {
+      margin-bottom: 32px;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(56px, 8vw, 96px);
+      line-height: 0.95;
+      font-style: italic;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 48px;
+    }
+
+    .hero-title .dim {
+      color: rgba(240, 237, 232, 0.45);
+    }
+
+    .hero-meta {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      border-top: 1px solid var(--border);
+      padding-top: 36px;
+    }
+
+    .hero-meta-item {
+      padding-right: 24px;
+    }
+
+    .hero-meta-item:not(:last-child) {
+      border-right: 1px solid var(--border);
+      margin-right: 24px;
+    }
+
+    .meta-key {
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--green-label);
+      margin-bottom: 6px;
+    }
+
+    .meta-val {
+      font-size: 13px;
+      color: var(--white);
+      line-height: 1.4;
+    }
+
+    /* ── SECTION ── */
+    section {
+      padding: 120px 0;
+    }
+
+    .section-num {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .section-num .num {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      color: var(--green-label);
+    }
+
+    .section-num .slash {
+      color: var(--white-faint);
+      font-size: 10px;
+    }
+
+    .section-num .name {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--green-label);
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(36px, 5vw, 58px);
+      line-height: 1.05;
+      margin-bottom: 20px;
+      animation: fadeUp 0.8s ease both;
+    }
+
+    .section-lead {
+      font-size: 15px;
+      color: var(--white-dim);
+      max-width: 500px;
+      line-height: 1.7;
+      margin-bottom: 48px;
+    }
+
+    /* ── 2-COL LAYOUT ── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .three-col {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .four-col {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    /* ── CARDS ── */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius);
+      padding: 28px;
+      transition: border-color 0.3s;
+    }
+
+    .card:hover {
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .card-label {
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--green-label);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card-label::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--green-label);
+      flex-shrink: 0;
+    }
+
+    .card-title {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: var(--white);
+    }
+
+    .card-body {
+      font-size: 13px;
+      color: var(--white-dim);
+      line-height: 1.65;
+    }
+
+    .card-body ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .card-body ul li {
+      padding: 4px 0 4px 16px;
+      position: relative;
+    }
+
+    .card-body ul li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: var(--green-label);
+    }
+
+    /* ── HIGHLIGHT CARD (right col) ── */
+    .highlight-card {
+      background: var(--bg-card-light);
+      border: 1px solid rgba(255, 255, 255, 0.13);
+      border-radius: var(--radius);
+      padding: 36px;
+    }
+
+    .highlight-card .hc-label {
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--green-label);
+      margin-bottom: 16px;
+    }
+
+    .highlight-card .hc-title {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 22px;
+      line-height: 1.3;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .highlight-card .hc-body {
+      font-size: 13px;
+      color: var(--white-dim);
+      line-height: 1.7;
+    }
+
+    /* ── SCOPE TABLE ── */
+    .scope-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .scope-row {
+      display: grid;
+      grid-template-columns: 160px 1fr 90px;
+      align-items: center;
+      gap: 20px;
+      padding: 16px 20px;
+      border-radius: 10px;
+      border: 1px solid transparent;
+      transition: background 0.25s, border-color 0.25s;
+    }
+
+    .scope-row:hover {
+      background: var(--bg-card);
+      border-color: var(--border-card);
+    }
+
+    .scope-row+.scope-row {
+      border-top: 1px solid var(--border);
+    }
+
+    .scope-row:hover {
+      border-top-color: transparent;
+    }
+
+    .scope-num {
+      font-size: 9px;
+      letter-spacing: 0.14em;
+      color: var(--green-label);
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+
+    .scope-name {
+      font-size: 14px;
+      color: var(--white);
+      font-weight: 400;
+    }
+
+    .scope-desc {
+      font-size: 12px;
+      color: var(--white-dim);
+      margin-top: 2px;
+    }
+
+    .scope-badge {
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 20px;
+      text-align: center;
+      border: 1px solid;
+    }
+
+    .scope-badge.alta {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .scope-badge.media {
+      border-color: var(--white-dim);
+      color: var(--white-dim);
+    }
+
+    .scope-badge.baixa {
+      border-color: rgba(255, 255, 255, 0.2);
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    /* ── TIMELINE CARDS ── */
+    .timeline-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .timeline-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius);
+      padding: 32px 28px;
+    }
+
+    .timeline-card.full {
+      grid-column: 1 / -1;
+      background: var(--bg-card-light);
+    }
+
+    .tc-days {
+      font-size: 9px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--green-label);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .tc-days::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      background: var(--green-label);
+      border-radius: 50%;
+    }
+
+    .tc-title {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .tc-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .tc-list li {
+      font-size: 13px;
+      color: var(--white-dim);
+      padding: 5px 0 5px 16px;
+      position: relative;
+    }
+
+    .tc-list li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: var(--green-label);
+    }
+
+    /* ── PRICE ITEMS ── */
+    .price-items {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .price-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius);
+      padding: 24px 22px;
+    }
+
+    .pi-label {
+      font-size: 9px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--green-label);
+      margin-bottom: 8px;
+    }
+
+    .pi-value {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 400;
+      color: var(--white);
+    }
+
+    /* ── INVESTMENT MAIN CARD ── */
+    .invest-main {
+      background: var(--bg-card-light);
+      border: 1px solid rgba(255, 255, 255, 0.13);
+      border-radius: var(--radius-lg);
+      padding: 44px 44px 36px;
+      margin-bottom: 20px;
+    }
+
+    .im-subtitle {
+      font-size: 9px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--green-label);
+      margin-bottom: 4px;
+    }
+
+    .im-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+
+    .im-tag {
+      font-size: 12px;
+      color: var(--white-dim);
+      margin-bottom: 20px;
+    }
+
+    .im-desc {
+      font-size: 14px;
+      color: var(--white-dim);
+      line-height: 1.7;
+      margin-bottom: 28px;
+      max-width: 560px;
+    }
+
+    .im-market-label {
+      font-size: 9px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--green-label);
+      margin-bottom: 8px;
+    }
+
+    .im-market-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      color: var(--white-dim);
+      text-decoration: line-through;
+      text-decoration-color: var(--green-muted);
+      opacity: 0.5;
+    }
+
+    .im-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 24px 0;
+    }
+
+    .im-final-label {
+      font-size: 9px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--green-label);
+      margin-bottom: 8px;
+    }
+
+    .im-final-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 52px;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .im-final-note {
+      font-size: 12px;
+      color: var(--white-dim);
+    }
+
+    .replica-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius);
+      padding: 24px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .replica-left .rl-label {
+      font-size: 9px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--green-label);
+      margin-bottom: 4px;
+    }
+
+    .replica-left .rl-title {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--white);
+    }
+
+    .replica-left .rl-desc {
+      font-size: 12px;
+      color: var(--white-dim);
+      margin-top: 3px;
+    }
+
+    .replica-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 30px;
+      font-weight: 400;
+      color: var(--white);
+      white-space: nowrap;
+    }
+
+    /* ── SCALE TABLE ── */
+    .scale-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 40px;
+    }
+
+    .scale-table thead tr {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .scale-table th {
+      font-size: 9px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--green-label);
+      padding: 0 0 12px;
+      text-align: left;
+      font-weight: 500;
+    }
+
+    .scale-table td {
+      padding: 14px 0;
+      font-size: 13px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    .scale-table td:nth-child(1) {
+      color: var(--white);
+      width: 38%;
+    }
+
+    .scale-table td:nth-child(2) {
+      color: var(--white-dim);
+      width: 28%;
+    }
+
+    .scale-table td:nth-child(3) {
+      color: var(--gold);
+      font-weight: 500;
+      text-align: right;
+    }
+
+    .scale-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* ── CTA ── */
+    .cta-section {
+      padding: 100px 0 140px;
+    }
+
+    .cta-box {
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-lg);
+      padding: 72px 56px;
+      text-align: center;
+      background: rgba(14, 58, 44, 0.25);
+      backdrop-filter: blur(4px);
+    }
+
+    .cta-title {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(26px, 4vw, 42px);
+      line-height: 1.25;
+      margin-bottom: 14px;
+      max-width: 680px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-subtitle {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(16px, 2.5vw, 22px);
+      line-height: 1.4;
+      color: var(--white-dim);
+      max-width: 540px;
+      margin: 0 auto 36px;
+    }
+
+    .cta-note {
+      font-size: 12px;
+      color: var(--white-dim);
+      margin-bottom: 32px;
+      letter-spacing: 0.02em;
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(240, 237, 232, 0.1);
+      border: 1px solid rgba(240, 237, 232, 0.25);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 18px 36px;
+      border-radius: 60px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.3s, border-color 0.3s, transform 0.2s;
+      backdrop-filter: blur(4px);
+    }
+
+    .cta-btn:hover {
+      background: rgba(240, 237, 232, 0.18);
+      border-color: rgba(240, 237, 232, 0.4);
+      transform: translateY(-2px);
+    }
+
+    .cta-btn .arrow {
+      font-size: 14px;
+    }
+
+    .cta-valid {
+      font-size: 11px;
+      color: rgba(240, 237, 232, 0.3);
+      margin-top: 20px;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 48px 40px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      border-top: 1px solid var(--border);
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-brand .fb-name {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .footer-brand .fb-tag {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--green-label);
+    }
+
+    .footer-right {
+      text-align: right;
+    }
+
+    .footer-right .fr-doc {
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--white-dim);
+      margin-bottom: 4px;
+    }
+
+    .footer-right .fr-date {
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--white-dim);
+    }
+
+    .footer-center {
+      text-align: center;
+    }
+
+    .footer-center .fc-for {
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(240, 237, 232, 0.2);
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-up {
+      opacity: 0;
+      animation: fadeUp 0.9s ease forwards;
+    }
+
+    .delay-1 {
+      animation-delay: 0.15s;
+    }
+
+    .delay-2 {
+      animation-delay: 0.3s;
+    }
+
+    .delay-3 {
+      animation-delay: 0.45s;
+    }
+
+    .delay-4 {
+      animation-delay: 0.6s;
+    }
+
+    /* intersection observer fallback */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 700px) {
+      .hero-meta {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+
+      .hero-meta-item:not(:last-child) {
+        border-right: none;
+        margin-right: 0;
+      }
+
+      .two-col,
+      .timeline-grid,
+      .price-items {
+        grid-template-columns: 1fr;
+      }
+
+      .timeline-card.full {
+        grid-column: 1;
+      }
+
+      .scope-row {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+
+      .replica-card {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      nav {
+        padding: 16px 20px;
+      }
+
+      .hero-card {
+        padding: 40px 24px 32px;
+      }
+
+      .cta-box {
+        padding: 48px 24px;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      .footer-right {
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-brand">
+      <div style="display: inline-block; width: 45px; height: auto;"><svg width="120" height="24"
+          viewBox="0 0 6493 1197" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M1209.65 118.093V235.573H1380.24H1550.83V710.601V1185.63H1690.41H1829.98V710.601V235.573H2000.57H2171.17V118.093V0.612915H1690.41H1209.65V118.093ZM2326.25 593.121V1185.63H2460.65H2595.06V991.532V797.434H2680.78H2766.5L2921.16 991.297L3075.82 1185.17L3228.32 1185.39C3312.19 1185.53 3380.81 1182.92 3380.81 1179.6C3380.81 1176.29 3311.95 1087.79 3227.78 982.951C3143.61 878.107 3071.5 787.014 3067.53 780.528C3063.04 773.193 3080.81 757.307 3114.6 738.459C3395.44 581.853 3379.73 178.069 3087.65 45.9399C3006.92 9.42915 2917.75 1.04186 2607.98 0.817116L2326.25 0.612915V593.121ZM3556.58 593.121V1185.63H3690.98H3825.39V593.121V0.612915H3690.98H3556.58V593.121ZM4060.03 7.13051C4056.08 11.0431 4052.92 175.515 4053.02 372.637C4053.22 770.199 4058.83 820.532 4115.21 930.881C4175 1047.91 4303.91 1150.65 4434.61 1185.43C4493.42 1201.08 4623.12 1200.81 4688.68 1184.9C4872.77 1140.23 5026.2 982.512 5065.61 797.434C5073.77 759.115 5076.56 624.299 5074.4 373.484L5071.22 5.72074L4939.4 2.86037L4807.58 0L4807.33 355.301C4807.2 550.716 4802.86 728.652 4797.68 750.708C4757.04 923.823 4526.97 988.896 4400.82 862.958C4336.46 798.701 4337.64 806.812 4331.99 388.808L4326.82 5.72074L4197.02 2.88064C4125.63 1.30742 4063.98 3.22813 4060.03 7.13051ZM326.667 592.478C146.998 912.381 0 1176.71 0 1179.88C0 1183.05 71.7516 1185.63 159.456 1185.63H318.913L493.423 874.93L667.943 564.242L842.526 874.93L1017.1 1185.63H1170.99H1324.89L1275.02 1095.45C1061.2 708.762 665.576 11.0023 660.096 10.9308C656.374 10.8695 506.337 272.574 326.667 592.478ZM5303.85 598.229V1185.63H5438.05H5572.24L5575.04 972.664L5577.83 759.708L5715.58 945.357C5791.35 1047.46 5863.48 1143.57 5875.88 1158.93L5898.4 1186.86L6053.46 977.669L6208.5 768.493L6211.29 977.056L6214.09 1185.63H6353.45H6492.82V598.229C6492.82 275.159 6489.32 10.9308 6485.06 11.0636C6480.8 11.1862 6354.02 177.548 6203.33 380.748C6052.64 583.948 5922.04 759.167 5913.11 770.128C5897.65 789.078 5884.2 773.08 5638.82 443.86C5496.9 253.451 5366.96 78.2212 5350.06 54.4596C5333.18 30.7082 5315.86 11.1657 5311.6 11.0431C5307.34 10.9307 5303.85 275.159 5303.85 598.229ZM2957.03 258.558C3044.17 302.241 3071.3 403.467 3018.74 488.85C2981.07 550.052 2936.71 562.474 2755.73 562.474H2595.06V399.024V235.573H2753.12C2896.56 235.573 2915.43 237.698 2957.03 258.558Z"
+            fill="white" />
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M4939.4 2.86035L5071.22 5.7207L5074.4 373.484C5076.56 624.299 5073.77 759.115 5065.61 797.435C5026.2 982.511 4872.77 1140.23 4688.68 1184.9C4623.13 1200.81 4493.42 1201.07 4434.61 1185.42C4362.06 1166.12 4290.05 1125.87 4230.12 1073.87L4391.59 853.739C4394.5 856.671 4397.58 859.723 4400.82 862.958C4526.97 988.896 4757.04 923.822 4797.68 750.708C4802.86 728.651 4807.2 550.715 4807.33 355.301L4807.58 0L4939.4 2.86035ZM6485.06 11.0635C6489.32 11.0115 6492.82 275.209 6492.82 598.229V1185.63H6214.09L6211.29 977.057L6208.5 768.493L6053.46 977.669L5898.4 1186.86L5875.88 1158.93C5865.48 1146.04 5813.03 1076.32 5751.66 993.896L5907.73 774.755C5909.71 773.891 5911.4 772.224 5913.11 770.128C5922.04 759.159 6052.64 583.943 6203.33 380.748C6354.02 177.549 6480.8 11.1861 6485.06 11.0635ZM661.684 12.877C689.671 53.5099 1067.76 720.622 1275.02 1095.45L1324.89 1185.63H1017.1L842.526 874.931L667.943 564.241L661.684 575.385V12.877ZM1829.98 418.842H1829.98V1185.63H1550.83V235.573H1550.83V0.613281H1829.98V418.842ZM2332.43 0.617188L2595.06 255.438L2595.06 561.866L2595.06 561.865V817.257H2595.06V1185.63H2326.25V0.613281L2332.43 0.617188ZM3825.39 1185.63H3556.58V0.613281H3825.39V1185.63ZM5577.74 766.062L5575.04 972.664L5572.24 1185.63H5303.85V598.229C5303.85 533.349 5303.99 470.843 5304.25 412.373L5577.74 766.062ZM3070.65 786.605L3071.93 786.562C3089.29 809.474 3153.89 890.915 3227.78 982.951C3311.95 1087.79 3380.81 1176.29 3380.81 1179.6C3380.81 1182.92 3312.18 1185.53 3228.32 1185.39L3075.82 1185.17L2921.16 991.297L2767.06 798.137L2595.5 562.475H2755.73C2818.16 562.475 2864.33 560.994 2899.58 556.545L3070.65 786.605Z"
+            fill="#00B271" />
+        </svg></div>
+      <div>
+        <div class="nav-name"></div>
+      </div>
+    </div>
+    <div class="nav-right">
+      <span class="nav-tag">Proposta Comercial</span>
+      <span class="nav-tag">Abr de 2026</span>
+      <div class="nav-dot"><span></span></div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-card">
+        <div class="hero-badge fade-up">
+          <span class="label">Proposta de Implementação</span>
+        </div>
+        <h1 class="hero-title fade-up delay-1">
+          Memorial<br>
+          <span class="dim">Jurídico.</span>
+        </h1>
+        <div class="hero-meta fade-up delay-2">
+          <div class="hero-meta-item">
+            <div class="meta-key">Para</div>
+            <div class="meta-val">Draw the Case</div>
+          </div>
+          <div class="hero-meta-item">
+            <div class="meta-key">De</div>
+            <div class="meta-val">Atrium Design Studio</div>
+          </div>
+          <div class="hero-meta-item">
+            <div class="meta-key">Data</div>
+            <div class="meta-val">23 de abril de 2026</div>
+          </div>
+          <div class="hero-meta-item">
+            <div class="meta-key">Projeto</div>
+            <div class="meta-val">Portal jurídico por caso — replicável, seguro e escalável</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 01 / DIAGNÓSTICO -->
+  <section>
+    <div class="container">
+      <div class="section-num reveal">
+        <span class="num">01</span>
+        <span class="slash">/</span>
+        <span class="name">Diagnóstico</span>
+      </div>
+      <h2 class="section-title reveal">Diagnóstico & Objetivo</h2>
+      <p class="section-lead reveal">Criar um memorial jurídico bem organizado, seguro e altamente replicável para
+        garantir a escalabilidade desse MVP.</p>
+
+      <div class="two-col">
+        <div>
+          <div class="card reveal">
+            <div class="card-label">Oportunidade</div>
+            <div class="card-title">Falta de concorrência</div>
+            <div class="card-body">Clientes de escritórios de advocacia não têm acesso organizado ao próprio processo.
+              Documentos dispersos. Uma grande demanda, ainda sem oferta real no mercado.</div>
+          </div>
+          <br>
+          <br>
+          <div class="card reveal">
+            <div class="card-label">Oportunidade</div>
+            <div class="card-title">Sem Solução Produtizada</div>
+            <div class="card-body">O escritório ainda não tem um produto digital escalável para comercializar. Os
+              memoriais são uma otima forma de entrada no cliente para novas parcerias e escalabilidade.</div>
+          </div>
+        </div>
+        <div class="highlight-card reveal" style="align-self: start;">
+          <div class="hc-label">A Solução — Memorial Jurídico Digital</div>
+          <div class="hc-title">Um portal exclusivo por caso que transforma o processo jurídico em um produto de alto
+            valor percebido.</div>
+          <div class="hc-body" style="margin-top: 20px; margin-bottom: 24px;">O Memorial Jurídico reúne em um só lugar o
+            que antes estava disperso: a tese, os argumentos, as provas, os documentos e a linha do tempo — entregues
+            com identidade visual impecável, acesso seguro por senha e subdomínio próprio.</div>
+          <div style="border-top: 1px solid var(--border); padding-top: 24px; margin-bottom: 20px;">
+            <div class="hc-label" style="margin-bottom: 8px;">Oportunidade 01 — Para o Escritório</div>
+            <div style="font-size: 13px; color: var(--white-dim); line-height: 1.65;">Produto digital tangível para
+              vender a cada novo cliente. Diferencial competitivo imediato, com custo de replicação previsível por caso.
+            </div>
+          </div>
+          <div style="border-top: 1px solid var(--border); padding-top: 24px;">
+            <div class="hc-label" style="margin-bottom: 8px;">Oportunidade 02 — Para o Cliente Final</div>
+            <div style="font-size: 13px; color: var(--white-dim); line-height: 1.65;">Transparência total, acesso 24h ao
+              próprio processo e a percepção de ser atendido por um escritório de altíssimo padrão.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 / SOLUÇÃO -->
+  <section style="padding-top: 0;">
+    <div class="container">
+      <div class="section-num reveal">
+        <span class="num">02</span>
+        <span class="slash">/</span>
+        <span class="name">Solução</span>
+      </div>
+      <h2 class="section-title reveal">O que é Entregue</h2>
+      <p class="section-lead reveal">Cada memorial é um portal web com subdomínio exclusivo, senha individual e 7 seções
+        integradas.</p>
+
+      <div
+        style="margin-bottom: 32px; background: var(--bg-card); border: 1px solid var(--border-card); border-radius: var(--radius-lg); padding: 12px 20px; overflow: hidden;"
+        class="reveal">
+        <div
+          style="font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--green-label); padding: 12px 0 14px; display: grid; grid-template-columns: 160px 1fr 90px; gap: 20px;">
+          <span>Seção</span><span>Conteúdo</span><span style="text-align:center;">Nível</span>
+        </div>
+        <div class="scope-list">
+          <div class="scope-row">
+            <div>
+              <div class="scope-num">01</div>
+              <div class="scope-name">Acesso Seguro</div>
+            </div>
+            <div class="scope-desc">Login com senha individual por caso, identidade visual do escritório</div>
+            <div class="scope-badge media" style="text-align:center;">Média</div>
+          </div>
+          <div class="scope-row">
+            <div>
+              <div class="scope-num">02</div>
+              <div class="scope-name">Resumo Executivo</div>
+            </div>
+            <div class="scope-desc">Partes, número do processo, instância e status atual</div>
+            <div class="scope-badge media" style="text-align:center;">Média</div>
+          </div>
+          <div class="scope-row">
+            <div>
+              <div class="scope-num">03</div>
+              <div class="scope-name">Tese do Caso</div>
+            </div>
+            <div class="scope-desc">Estratégia jurídica apresentada de forma clara ao cliente</div>
+            <div class="scope-badge media" style="text-align:center;">Média</div>
+          </div>
+          <div class="scope-row">
+            <div>
+              <div class="scope-num">04</div>
+              <div class="scope-name">Mapa de Argumentos</div>
+            </div>
+            <div class="scope-desc">Estrutura visual: Tese → Argumentos → Provas, cards clicáveis com links diretos
+            </div>
+            <div class="scope-badge alta" style="text-align:center;">Alta</div>
+          </div>
+          <div class="scope-row">
+            <div>
+              <div class="scope-num">05</div>
+              <div class="scope-name">Linha do Tempo</div>
+            </div>
+            <div class="scope-desc">Histórico cronológico completo dos eventos processuais</div>
+            <div class="scope-badge alta" style="text-align:center;">Alta</div>
+          </div>
+          <div class="scope-row">
+            <div>
+              <div class="scope-num">06</div>
+              <div class="scope-name">Provas e Documentos</div>
+            </div>
+            <div class="scope-desc">Repositório com acesso e download direto aos documentos do caso</div>
+            <div class="scope-badge media" style="text-align:center;">Média</div>
+          </div>
+          <div class="scope-row">
+            <div>
+              <div class="scope-num">07</div>
+              <div class="scope-name">Pontos Críticos</div>
+            </div>
+            <div class="scope-desc">Alertas relevantes do processo e documentos complementares</div>
+            <div class="scope-badge baixa" style="text-align:center;">Baixa</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="two-col reveal">
+        <div class="card">
+          <div class="card-label">Segurança</div>
+          <div class="card-title">Isolamento por Caso</div>
+          <div class="card-body">
+            <ul>
+              <li>Subdomínio exclusivo por caso — nenhum cliente acessa o portal de outro</li>
+              <li>Senha individual configurada pelo escritório</li>
+              <li>Arquitetura estática — sem banco de dados exposto</li>
+              <li>Hospedagem no servidor e DNS já existentes do escritório</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-label">Acesso</div>
+          <div class="card-title">drawthelaw.com.br/Memorial-Nery-Marialdo</div>
+          <div class="card-body">
+            <ul>
+              <li>Subdomínio dedicado por caso, configurado no DNS existente</li>
+              <li>Acesso 24h, de qualquer dispositivo</li>
+              <li>Documentos via Google Drive, servidor ou S3</li>
+              <li>Sem backend complexo — alta performance e baixo custo</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 / CRONOGRAMA -->
+  <section style="padding-top: 80px;">
+    <div class="container">
+      <div class="section-num reveal">
+        <span class="num">03</span>
+        <span class="slash">/</span>
+        <span class="name">Cronograma</span>
+      </div>
+      <h2 class="section-title reveal">Execução Ágil</h2>
+      <p class="section-lead reveal">Entrega completa em 8 dias corridos. Início imediato após aprovação.</p>
+
+      <div class="timeline-grid reveal">
+        <div class="timeline-card">
+          <div class="tc-days">Dias 1–4</div>
+          <div class="tc-title">Protótipo Navegável</div>
+          <ul class="tc-list">
+            <li>Entrega do protótipo em alta fidelidade no Figma</li>
+            <li>Todas as 7 seções completas e navegáveis</li>
+            <li>Validação com o escritório e ajustes finais</li>
+          </ul>
+        </div>
+        <div class="timeline-card">
+          <div class="tc-days">Dias 5–8</div>
+          <div class="tc-title">Desenvolvimento e Deploy</div>
+          <ul class="tc-list">
+            <li>Front-end completo com componentes visuais próprios</li>
+            <li>Integração com subdomínio e configuração do DNS</li>
+            <li>Portal funcional publicado no servidor existente</li>
+          </ul>
+        </div>
+        <div class="timeline-card full">
+          <div class="tc-days">Entrega Final — Dia 8</div>
+          <div class="tc-title">Template + Documentação</div>
+          <ul class="tc-list">
+            <li>Memorial no ar, testado e validado</li>
+            <li>Template base entregue para replicação em novos casos com suporte do desenvolvedor</li>
+            <li>Handoff completo com guia de uso</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 / INVESTIMENTO -->
+  <section style="padding-top: 80px;">
+    <div class="container">
+      <div class="section-num reveal">
+        <span class="num">04</span>
+        <span class="slash">/</span>
+        <span class="name">Valor</span>
+      </div>
+      <h2 class="section-title reveal">Investimento & Escalabilidade</h2>
+      <p class="section-lead reveal">Um MVP criado uma vez e monetizado em todos os casos futuros.</p>
+
+
+      <div class="invest-main reveal">
+        <div class="im-subtitle">A. Setup de Implementação</div>
+        <h1 class="im-title"
+          style="font-family: 'Playfair Display', serif; font-style: italic; font-size: clamp(28px, 4vw, 42px); font-weight: 700; line-height: 1.1; margin-bottom: 6px; color: var(--white);">
+          Memorial Completo (com senha)</h1>
+        <div class="im-tag">Investimento Único · MVP</div>
+        <div class="im-desc">Implementação completa do memorial jurídico digital com 7 seções integradas,
+          sistema de acesso por senha, configuração de subdomínio e template base para replicação por novos casos com
+          suporte de desenvolvedor.
+        </div>
+        <div class="im-market-label">Valor de Mercado</div>
+        <div class="im-market-price">R$ 5.600</div>
+        <div class="im-divider"></div>
+        <div class="im-final-label">Investimento — Proposta MVP</div>
+        <div class="im-final-price">R$ 3.500</div>
+        <div class="im-final-note">50% na aprovação · 50% na entrega. PIX ou transferência.</div>
+      </div>
+
+      <div class="replica-card reveal">
+        <div class="replica-left">
+          <div class="rl-label">B. Replicação por Caso</div>
+          <div class="rl-title">Cada novo memorial a partir do template existente</div>
+          <div class="rl-desc">Contexto atualizado + subdomínio configurado + ajustes visuais · requer desenvolvedor ·
+            entrega em até 3 dias</div>
+        </div>
+        <div class="replica-price">R$ 1.000 / caso</div>
+      </div>
+
+      <table class="scale-table reveal">
+        <thead>
+          <tr>
+            <th>Cenário</th>
+            <th>Custo de replicação</th>
+            <th>Receita gerada</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>MVP — 1º memorial (este projeto)</td>
+            <td>R$ 3.000 (desenvolvimento)</td>
+            <td>Produto validado</td>
+          </tr>
+          <tr>
+            <td>3 memoriais replicados</td>
+            <td>R$ 3.000 (3 × R$ 1.000)</td>
+            <td>MVP pago</td>
+          </tr>
+          <tr>
+            <td>10 memoriais replicados</td>
+            <td>R$ 10.000 (10 × R$ 1.000)</td>
+            <td>R$ 10.000 gerados</td>
+          </tr>
+          <tr>
+            <td>20 memoriais replicados</td>
+            <td>R$ 20.000 (20 × R$ 1.000)</td>
+            <td>Produto em escala total</td>
+          </tr>
+          <tr style="border-top: 2px solid var(--border-card);">
+            <td style="color: var(--gold); font-weight: 500;">SISTEMA DRAW MEMORIAL<br><span
+                style="font-size: 11px; color: var(--white-dim); font-weight: 300;">Plataforma própria — replicação sem
+                desenvolvedor</span></td>
+            <td style="color: var(--white-dim);">R$ 16.000</td>
+            <td style="color: var(--gold); font-weight: 600;">∞</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-box reveal">
+        <div class="cta-title">Seu MVP de Memorial Jurídico Escalável em 8 Dias.</div>
+        <div class="cta-subtitle">Você não está comprando dó um site. Está adquirindo ativo digital seguro e altamente
+          escalável.</div>
+        <div class="cta-note">Estou à disposição para ajustar detalhes finais.</div>
+        <a href="https://wa.me/5561982389962?text=Ol%C3%A1!%20Proposta%20aprovada%20%E2%9C%85%0A%0AQuero%20avan%C3%A7ar%20com%20o%20Memorial%20Jur%C3%ADdico%20Digital%20%E2%80%94%20Draw%20the%20Case.%0ADispon%C3%ADvel%20para%20alinhar%20os%20pr%C3%B3ximos%20passos."
+          class="cta-btn" target="_blank" rel="noopener">
+          Aprovar Proposta <span class="arrow">→</span>
+        </a>
+        <div class="cta-valid">Proposta válida por 2 dias a partir do envio.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <div style="display: inline-block; width: 60px; height: auto; margin-bottom: 12px;"><svg width="160" height="32"
+            viewBox="0 0 6493 1197" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M1209.65 118.093V235.573H1380.24H1550.83V710.601V1185.63H1690.41H1829.98V710.601V235.573H2000.57H2171.17V118.093V0.612915H1690.41H1209.65V118.093ZM2326.25 593.121V1185.63H2460.65H2595.06V991.532V797.434H2680.78H2766.5L2921.16 991.297L3075.82 1185.17L3228.32 1185.39C3312.19 1185.53 3380.81 1182.92 3380.81 1179.6C3380.81 1176.29 3311.95 1087.79 3227.78 982.951C3143.61 878.107 3071.5 787.014 3067.53 780.528C3063.04 773.193 3080.81 757.307 3114.6 738.459C3395.44 581.853 3379.73 178.069 3087.65 45.9399C3006.92 9.42915 2917.75 1.04186 2607.98 0.817116L2326.25 0.612915V593.121ZM3556.58 593.121V1185.63H3690.98H3825.39V593.121V0.612915H3690.98H3556.58V593.121ZM4060.03 7.13051C4056.08 11.0431 4052.92 175.515 4053.02 372.637C4053.22 770.199 4058.83 820.532 4115.21 930.881C4175 1047.91 4303.91 1150.65 4434.61 1185.43C4493.42 1201.08 4623.12 1200.81 4688.68 1184.9C4872.77 1140.23 5026.2 982.512 5065.61 797.434C5073.77 759.115 5076.56 624.299 5074.4 373.484L5071.22 5.72074L4939.4 2.86037L4807.58 0L4807.33 355.301C4807.2 550.716 4802.86 728.652 4797.68 750.708C4757.04 923.823 4526.97 988.896 4400.82 862.958C4336.46 798.701 4337.64 806.812 4331.99 388.808L4326.82 5.72074L4197.02 2.88064C4125.63 1.30742 4063.98 3.22813 4060.03 7.13051ZM326.667 592.478C146.998 912.381 0 1176.71 0 1179.88C0 1183.05 71.7516 1185.63 159.456 1185.63H318.913L493.423 874.93L667.943 564.242L842.526 874.93L1017.1 1185.63H1170.99H1324.89L1275.02 1095.45C1061.2 708.762 665.576 11.0023 660.096 10.9308C656.374 10.8695 506.337 272.574 326.667 592.478ZM5303.85 598.229V1185.63H5438.05H5572.24L5575.04 972.664L5577.83 759.708L5715.58 945.357C5791.35 1047.46 5863.48 1143.57 5875.88 1158.93L5898.4 1186.86L6053.46 977.669L6208.5 768.493L6211.29 977.056L6214.09 1185.63H6353.45H6492.82V598.229C6492.82 275.159 6489.32 10.9308 6485.06 11.0636C6480.8 11.1862 6354.02 177.548 6203.33 380.748C6052.64 583.948 5922.04 759.167 5913.11 770.128C5897.65 789.078 5884.2 773.08 5638.82 443.86C5496.9 253.451 5366.96 78.2212 5350.06 54.4596C5333.18 30.7082 5315.86 11.1657 5311.6 11.0431C5307.34 10.9307 5303.85 275.159 5303.85 598.229ZM2957.03 258.558C3044.17 302.241 3071.3 403.467 3018.74 488.85C2981.07 550.052 2936.71 562.474 2755.73 562.474H2595.06V399.024V235.573H2753.12C2896.56 235.573 2915.43 237.698 2957.03 258.558Z"
+              fill="white" />
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M4939.4 2.86035L5071.22 5.7207L5074.4 373.484C5076.56 624.299 5073.77 759.115 5065.61 797.435C5026.2 982.511 4872.77 1140.23 4688.68 1184.9C4623.13 1200.81 4493.42 1201.07 4434.61 1185.42C4362.06 1166.12 4290.05 1125.87 4230.12 1073.87L4391.59 853.739C4394.5 856.671 4397.58 859.723 4400.82 862.958C4526.97 988.896 4757.04 923.822 4797.68 750.708C4802.86 728.651 4807.2 550.715 4807.33 355.301L4807.58 0L4939.4 2.86035ZM6485.06 11.0635C6489.32 11.0115 6492.82 275.209 6492.82 598.229V1185.63H6214.09L6211.29 977.057L6208.5 768.493L6053.46 977.669L5898.4 1186.86L5875.88 1158.93C5865.48 1146.04 5813.03 1076.32 5751.66 993.896L5907.73 774.755C5909.71 773.891 5911.4 772.224 5913.11 770.128C5922.04 759.159 6052.64 583.943 6203.33 380.748C6354.02 177.549 6480.8 11.1861 6485.06 11.0635ZM661.684 12.877C689.671 53.5099 1067.76 720.622 1275.02 1095.45L1324.89 1185.63H1017.1L842.526 874.931L667.943 564.241L661.684 575.385V12.877ZM1829.98 418.842H1829.98V1185.63H1550.83V235.573H1550.83V0.613281H1829.98V418.842ZM2332.43 0.617188L2595.06 255.438L2595.06 561.866L2595.06 561.865V817.257H2595.06V1185.63H2326.25V0.613281L2332.43 0.617188ZM3825.39 1185.63H3556.58V0.613281H3825.39V1185.63ZM5577.74 766.062L5575.04 972.664L5572.24 1185.63H5303.85V598.229C5303.85 533.349 5303.99 470.843 5304.25 412.373L5577.74 766.062ZM3070.65 786.605L3071.93 786.562C3089.29 809.474 3153.89 890.915 3227.78 982.951C3311.95 1087.79 3380.81 1176.29 3380.81 1179.6C3380.81 1182.92 3312.18 1185.53 3228.32 1185.39L3075.82 1185.17L2921.16 991.297L2767.06 798.137L2595.5 562.475H2755.73C2818.16 562.475 2864.33 560.994 2899.58 556.545L3070.65 786.605Z"
+              fill="#00B271" />
+          </svg></div>
+      </div>
+      <div class="fb-tag">Tecnologia a favor da sua causa.</div>
+    </div>
+    <div class="footer-center">
+      <div class="fc-for">Proposta exclusiva · Documento Confidencial</div>
+    </div>
+    <div class="footer-right">
+      <div class="fr-doc">Documento Confidencial</div>
+      <div class="fr-date">Abril de 2026</div>
+    </div>
+  </footer>
+
+  <script>
+    // Reveal on scroll
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 80);
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+</body>
+
+</html>
