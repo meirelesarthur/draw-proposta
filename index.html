@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Proposta Comercial | DRAW THE CASE</title>
+  <title>Proposta de Design | GLOBAL CFM</title>
   <link
     href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500&display=swap"
     rel="stylesheet">
@@ -104,21 +104,6 @@
       gap: 12px;
     }
 
-    .nav-logo {
-      width: 36px;
-      height: 36px;
-      border-radius: 8px;
-      background: var(--bg-card-light);
-      border: 1px solid var(--border-card);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Playfair Display', serif;
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--white);
-    }
-
     .nav-name {
       font-size: 12px;
       font-weight: 500;
@@ -177,7 +162,6 @@
     .footer-logo svg {
       filter: brightness(0.95) opacity(0.9);
     }
-
 
     /* ── HERO ── */
     .hero {
@@ -389,7 +373,7 @@
       color: var(--green-label);
     }
 
-    /* ── HIGHLIGHT CARD (right col) ── */
+    /* ── HIGHLIGHT CARD ── */
     .highlight-card {
       background: var(--bg-card-light);
       border: 1px solid rgba(255, 255, 255, 0.13);
@@ -429,7 +413,7 @@
 
     .scope-row {
       display: grid;
-      grid-template-columns: 160px 1fr 90px;
+      grid-template-columns: 200px 1fr 90px;
       align-items: center;
       gap: 20px;
       padding: 16px 20px;
@@ -563,36 +547,6 @@
       color: var(--green-label);
     }
 
-    /* ── PRICE ITEMS ── */
-    .price-items {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-      margin-bottom: 20px;
-    }
-
-    .price-item {
-      background: var(--bg-card);
-      border: 1px solid var(--border-card);
-      border-radius: var(--radius);
-      padding: 24px 22px;
-    }
-
-    .pi-label {
-      font-size: 9px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--green-label);
-      margin-bottom: 8px;
-    }
-
-    .pi-value {
-      font-family: 'Playfair Display', serif;
-      font-size: 28px;
-      font-weight: 400;
-      color: var(--white);
-    }
-
     /* ── INVESTMENT MAIN CARD ── */
     .invest-main {
       background: var(--bg-card-light);
@@ -676,43 +630,47 @@
       color: var(--white-dim);
     }
 
-    .replica-card {
+    /* ── PARCELAS ── */
+    .parcelas-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .parcela-card {
       background: var(--bg-card);
       border: 1px solid var(--border-card);
       border-radius: var(--radius);
-      padding: 24px 28px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
+      padding: 24px 22px;
     }
 
-    .replica-left .rl-label {
+    .pc-label {
       font-size: 9px;
       letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--green-label);
-      margin-bottom: 4px;
+      margin-bottom: 8px;
     }
 
-    .replica-left .rl-title {
-      font-size: 15px;
-      font-weight: 500;
-      color: var(--white);
-    }
-
-    .replica-left .rl-desc {
-      font-size: 12px;
+    .pc-timing {
+      font-size: 11px;
       color: var(--white-dim);
-      margin-top: 3px;
+      margin-bottom: 8px;
     }
 
-    .replica-price {
+    .pc-value {
       font-family: 'Playfair Display', serif;
-      font-size: 30px;
+      font-size: 28px;
       font-weight: 400;
       color: var(--white);
-      white-space: nowrap;
+    }
+
+    .pc-desc {
+      font-size: 11px;
+      color: var(--white-dim);
+      margin-top: 6px;
+      line-height: 1.5;
     }
 
     /* ── SCALE TABLE ── */
@@ -750,13 +708,13 @@
 
     .scale-table td:nth-child(2) {
       color: var(--white-dim);
-      width: 28%;
+      width: 34%;
     }
 
     .scale-table td:nth-child(3) {
       color: var(--gold);
       font-weight: 500;
-      text-align: right;
+      text-align: left;
     }
 
     .scale-table tbody tr:last-child td {
@@ -916,23 +874,11 @@
       animation: fadeUp 0.9s ease forwards;
     }
 
-    .delay-1 {
-      animation-delay: 0.15s;
-    }
+    .delay-1 { animation-delay: 0.15s; }
+    .delay-2 { animation-delay: 0.3s; }
+    .delay-3 { animation-delay: 0.45s; }
+    .delay-4 { animation-delay: 0.6s; }
 
-    .delay-2 {
-      animation-delay: 0.3s;
-    }
-
-    .delay-3 {
-      animation-delay: 0.45s;
-    }
-
-    .delay-4 {
-      animation-delay: 0.6s;
-    }
-
-    /* intersection observer fallback */
     .reveal {
       opacity: 0;
       transform: translateY(20px);
@@ -958,7 +904,7 @@
 
       .two-col,
       .timeline-grid,
-      .price-items {
+      .parcelas-grid {
         grid-template-columns: 1fr;
       }
 
@@ -969,11 +915,6 @@
       .scope-row {
         grid-template-columns: 1fr;
         gap: 6px;
-      }
-
-      .replica-card {
-        flex-direction: column;
-        gap: 12px;
       }
 
       nav {
@@ -1019,7 +960,7 @@
       </div>
     </div>
     <div class="nav-right">
-      <span class="nav-tag">Proposta Comercial</span>
+      <span class="nav-tag">Proposta de Design</span>
       <span class="nav-tag">Abr de 2026</span>
       <div class="nav-dot"><span></span></div>
     </div>
@@ -1030,16 +971,16 @@
     <div class="hero-inner">
       <div class="hero-card">
         <div class="hero-badge fade-up">
-          <span class="label">Proposta de Implementação</span>
+          <span class="label">Proposta de Design de Interface</span>
         </div>
         <h1 class="hero-title fade-up delay-1">
-          Memorial<br>
-          <span class="dim">Jurídico.</span>
+          Plataforma<br>
+          <span class="dim">Global CRM.</span>
         </h1>
         <div class="hero-meta fade-up delay-2">
           <div class="hero-meta-item">
             <div class="meta-key">Para</div>
-            <div class="meta-val">Draw the Case</div>
+            <div class="meta-val">Global</div>
           </div>
           <div class="hero-meta-item">
             <div class="meta-key">De</div>
@@ -1047,171 +988,141 @@
           </div>
           <div class="hero-meta-item">
             <div class="meta-key">Data</div>
-            <div class="meta-val">23 de abril de 2026</div>
+            <div class="meta-val">29 de abril de 2026</div>
           </div>
           <div class="hero-meta-item">
             <div class="meta-key">Projeto</div>
-            <div class="meta-val">Portal jurídico por caso — replicável, seguro e escalável</div>
+            <div class="meta-val">Ecossistema visual completo para agronegócio — 120 telas, Desktop + Mobile</div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 01 / DIAGNÓSTICO -->
+  <!-- 01 / VISÃO GERAL -->
   <section>
     <div class="container">
       <div class="section-num reveal">
         <span class="num">01</span>
         <span class="slash">/</span>
-        <span class="name">Diagnóstico</span>
+        <span class="name">Visão Geral</span>
       </div>
-      <h2 class="section-title reveal">Diagnóstico & Objetivo</h2>
-      <p class="section-lead reveal">Criar um memorial jurídico bem organizado, seguro e altamente replicável para
-        garantir a escalabilidade desse MVP.</p>
+      <h2 class="section-title reveal">O Desafio do <em>Agronegócio.</em></h2>
+      <p class="section-lead reveal">O agronegócio demanda ferramentas que combinem densidade de dados com agilidade operacional — uma interface madura e escalável desde o primeiro dia.</p>
 
       <div class="two-col">
         <div>
           <div class="card reveal">
-            <div class="card-label">Oportunidade</div>
-            <div class="card-title">Falta de concorrência</div>
-            <div class="card-body">Clientes de escritórios de advocacia não têm acesso organizado ao próprio processo.
-              Documentos dispersos. Uma grande demanda, ainda sem oferta real no mercado.</div>
+            <div class="card-label">Problema</div>
+            <div class="card-title">Ferramentas inadequadas</div>
+            <div class="card-body">Gestores do agronegócio operam com sistemas genéricos que não refletem a complexidade do setor. Dados dispersos, processos manuais e interfaces que travam a tomada de decisão em campo.</div>
           </div>
           <br>
-          <br>
           <div class="card reveal">
-            <div class="card-label">Oportunidade</div>
-            <div class="card-title">Sem Solução Produtizada</div>
-            <div class="card-body">O escritório ainda não tem um produto digital escalável para comercializar. Os
-              memoriais são uma otima forma de entrada no cliente para novas parcerias e escalabilidade.</div>
+            <div class="card-label">Objetivo Estratégico</div>
+            <div class="card-title">Design robusto e moderno</div>
+            <div class="card-body">
+              <ul>
+                <li><strong>Usabilidade:</strong> Interface intuitiva para campo e gestão estratégica</li>
+                <li><strong>Performance:</strong> Desktop (análise) e Mobile (execução em campo)</li>
+                <li><strong>Escalabilidade:</strong> Design robusto e moderno pronto para crescimento</li>
+              </ul>
+            </div>
           </div>
         </div>
         <div class="highlight-card reveal" style="align-self: start;">
-          <div class="hc-label">A Solução — Memorial Jurídico Digital</div>
-          <div class="hc-title">Um portal exclusivo por caso que transforma o processo jurídico em um produto de alto
-            valor percebido.</div>
-          <div class="hc-body" style="margin-top: 20px; margin-bottom: 24px;">O Memorial Jurídico reúne em um só lugar o
-            que antes estava disperso: a tese, os argumentos, as provas, os documentos e a linha do tempo — entregues
-            com identidade visual impecável, acesso seguro por senha e subdomínio próprio.</div>
+          <div class="hc-label">A Solução — Ecossistema Visual Global CRM</div>
+          <div class="hc-title">Uma plataforma de gestão estruturada sob os mais altos padrões de usabilidade e performance do mercado.</div>
+          <div class="hc-body" style="margin-top: 20px; margin-bottom: 24px;">O Global CRM reúne em um só ecossistema toda a complexidade operacional do agronegócio — com identidade visual premium, arquitetura de informação sólida e componentes reutilizáveis prontos para desenvolvimento.</div>
           <div style="border-top: 1px solid var(--border); padding-top: 24px; margin-bottom: 20px;">
-            <div class="hc-label" style="margin-bottom: 8px;">Oportunidade 01 — Para o Escritório</div>
-            <div style="font-size: 13px; color: var(--white-dim); line-height: 1.65;">Produto digital tangível para
-              vender a cada novo cliente. Diferencial competitivo imediato, com custo de replicação previsível por caso.
-            </div>
+            <div class="hc-label" style="margin-bottom: 8px;">Para o Negócio</div>
+            <div style="font-size: 13px; color: var(--white-dim); line-height: 1.65;">Produto digital pronto para validações de negócio e apresentações de alto impacto para investidores e futuros sócios.</div>
           </div>
           <div style="border-top: 1px solid var(--border); padding-top: 24px;">
-            <div class="hc-label" style="margin-bottom: 8px;">Oportunidade 02 — Para o Cliente Final</div>
-            <div style="font-size: 13px; color: var(--white-dim); line-height: 1.65;">Transparência total, acesso 24h ao
-              próprio processo e a percepção de ser atendido por um escritório de altíssimo padrão.</div>
+            <div class="hc-label" style="margin-bottom: 8px;">Para o Usuário Final</div>
+            <div style="font-size: 13px; color: var(--white-dim); line-height: 1.65;">Ferramenta percebida como premium e indispensável — tanto pelo gestor estratégico quanto pelo operador em campo.</div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 02 / SOLUÇÃO -->
+  <!-- 02 / ESCOPO -->
   <section style="padding-top: 0;">
     <div class="container">
       <div class="section-num reveal">
         <span class="num">02</span>
         <span class="slash">/</span>
-        <span class="name">Solução</span>
+        <span class="name">Escopo</span>
       </div>
-      <h2 class="section-title reveal">O que é Entregue</h2>
-      <p class="section-lead reveal">Cada memorial é um portal web com subdomínio exclusivo, senha individual e 7 seções
-        integradas.</p>
+      <h2 class="section-title reveal">120 Telas de <em>Alta Fidelidade.</em></h2>
+      <p class="section-lead reveal">Arquitetura completa do Global CRM, estruturada em módulos estratégicos e otimizada para Desktop e Mobile.</p>
 
-      <div
-        style="margin-bottom: 32px; background: var(--bg-card); border: 1px solid var(--border-card); border-radius: var(--radius-lg); padding: 12px 20px; overflow: hidden;"
-        class="reveal">
-        <div
-          style="font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--green-label); padding: 12px 0 14px; display: grid; grid-template-columns: 160px 1fr 90px; gap: 20px;">
-          <span>Seção</span><span>Conteúdo</span><span style="text-align:center;">Nível</span>
-        </div>
-        <div class="scope-list">
-          <div class="scope-row">
-            <div>
-              <div class="scope-num">01</div>
-              <div class="scope-name">Acesso Seguro</div>
+      <!-- Módulos -->
+      <div class="highlight-card reveal" style="margin-bottom: 40px;">
+        <div class="hc-label">Módulos contemplados</div>
+        <div class="hc-title" style="margin-bottom: 24px;">Cobertura completa da operação</div>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;">
+          <div style="display: flex; flex-direction: column; gap: 0; border-right: 1px solid var(--border); padding-right: 28px;">
+            <div style="font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--green-label); margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid var(--border);">Vendas</div>
+            <div style="font-size: 13px; color: var(--white-dim); line-height: 2.2;">
+              Dashboard<br>
+              Agenda<br>
+              Negócios<br>
+              Funil de Vendas<br>
+              Funil de Vendas — Novo<br>
+              Previsão de Vendas<br>
+              Ações
             </div>
-            <div class="scope-desc">Login com senha individual por caso, identidade visual do escritório</div>
-            <div class="scope-badge media" style="text-align:center;">Média</div>
           </div>
-          <div class="scope-row">
-            <div>
-              <div class="scope-num">02</div>
-              <div class="scope-name">Resumo Executivo</div>
+          <div style="display: flex; flex-direction: column; gap: 0; border-right: 1px solid var(--border); padding: 0 28px;">
+            <div style="font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--green-label); margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid var(--border);">Clientes & Campo</div>
+            <div style="font-size: 13px; color: var(--white-dim); line-height: 2.2;">
+              Clientes e Carteira<br>
+              EEmovel<br>
+              Mapa<br>
+              Orçamentos e Pedidos<br>
+              Favoritos<br>
+              Oportunidades 360<br>
+              Serviços
             </div>
-            <div class="scope-desc">Partes, número do processo, instância e status atual</div>
-            <div class="scope-badge media" style="text-align:center;">Média</div>
           </div>
-          <div class="scope-row">
-            <div>
-              <div class="scope-num">03</div>
-              <div class="scope-name">Tese do Caso</div>
+          <div style="display: flex; flex-direction: column; gap: 0; padding-left: 28px;">
+            <div style="font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--green-label); margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid var(--border);">Gestão & Config</div>
+            <div style="font-size: 13px; color: var(--white-dim); line-height: 2.2;">
+              Cadastros Gerais<br>
+              Veículos Usados<br>
+              Indicadores (KPI)<br>
+              Relatórios<br>
+              Configurações
             </div>
-            <div class="scope-desc">Estratégia jurídica apresentada de forma clara ao cliente</div>
-            <div class="scope-badge media" style="text-align:center;">Média</div>
-          </div>
-          <div class="scope-row">
-            <div>
-              <div class="scope-num">04</div>
-              <div class="scope-name">Mapa de Argumentos</div>
-            </div>
-            <div class="scope-desc">Estrutura visual: Tese → Argumentos → Provas, cards clicáveis com links diretos
-            </div>
-            <div class="scope-badge alta" style="text-align:center;">Alta</div>
-          </div>
-          <div class="scope-row">
-            <div>
-              <div class="scope-num">05</div>
-              <div class="scope-name">Linha do Tempo</div>
-            </div>
-            <div class="scope-desc">Histórico cronológico completo dos eventos processuais</div>
-            <div class="scope-badge alta" style="text-align:center;">Alta</div>
-          </div>
-          <div class="scope-row">
-            <div>
-              <div class="scope-num">06</div>
-              <div class="scope-name">Provas e Documentos</div>
-            </div>
-            <div class="scope-desc">Repositório com acesso e download direto aos documentos do caso</div>
-            <div class="scope-badge media" style="text-align:center;">Média</div>
-          </div>
-          <div class="scope-row">
-            <div>
-              <div class="scope-num">07</div>
-              <div class="scope-name">Pontos Críticos</div>
-            </div>
-            <div class="scope-desc">Alertas relevantes do processo e documentos complementares</div>
-            <div class="scope-badge baixa" style="text-align:center;">Baixa</div>
           </div>
         </div>
       </div>
 
+      <!-- Entregáveis -->
       <div class="two-col reveal">
         <div class="card">
-          <div class="card-label">Segurança</div>
-          <div class="card-title">Isolamento por Caso</div>
+          <div class="card-label">Arquivo Fonte</div>
+          <div class="card-title">Figma Completo</div>
           <div class="card-body">
             <ul>
-              <li>Subdomínio exclusivo por caso — nenhum cliente acessa o portal de outro</li>
-              <li>Senha individual configurada pelo escritório</li>
-              <li>Arquitetura estática — sem banco de dados exposto</li>
-              <li>Hospedagem no servidor e DNS já existentes do escritório</li>
+              <li>120 telas organizadas e nomeadas</li>
+              <li>Guia de estilos com tokens de design</li>
+              <li>Componentes reutilizáveis documentados</li>
+              <li>Especificações técnicas para desenvolvimento</li>
             </ul>
           </div>
         </div>
         <div class="card">
-          <div class="card-label">Acesso</div>
-          <div class="card-title">drawthelaw.com.br/Memorial-Nery-Marialdo</div>
+          <div class="card-label">Bônus Estratégico</div>
+          <div class="card-title">Protótipo Navegável</div>
           <div class="card-body">
             <ul>
-              <li>Subdomínio dedicado por caso, configurado no DNS existente</li>
-              <li>Acesso 24h, de qualquer dispositivo</li>
-              <li>Documentos via Google Drive, servidor ou S3</li>
-              <li>Sem backend complexo — alta performance e baixo custo</li>
+              <li>Simulação interativa de alta fidelidade</li>
+              <li>Caminho principal do sistema navegável</li>
+              <li>Ativo crucial para pitch a investidores</li>
+              <li>Validação de negócio antes do desenvolvimento</li>
             </ul>
           </div>
         </div>
@@ -1227,35 +1138,53 @@
         <span class="slash">/</span>
         <span class="name">Cronograma</span>
       </div>
-      <h2 class="section-title reveal">Execução Ágil</h2>
-      <p class="section-lead reveal">Entrega completa em 8 dias corridos. Início imediato após aprovação.</p>
+      <h2 class="section-title reveal">8 Semanas de <em>Entrega Estruturada.</em></h2>
+      <p class="section-lead reveal">Sprints dinâmicas com reuniões estratégicas, garantia de qualidade e validação contínua. Início imediato após aprovação.</p>
 
       <div class="timeline-grid reveal">
         <div class="timeline-card">
-          <div class="tc-days">Dias 1–4</div>
-          <div class="tc-title">Protótipo Navegável</div>
+          <div class="tc-days">Semanas 1–2</div>
+          <div class="tc-title">Módulo de Vendas</div>
           <ul class="tc-list">
-            <li>Entrega do protótipo em alta fidelidade no Figma</li>
-            <li>Todas as 7 seções completas e navegáveis</li>
-            <li>Validação com o escritório e ajustes finais</li>
+            <li>Dashboard, Agenda, Negócios e Funil de Vendas</li>
+            <li>Previsão de Vendas, Ações e Clientes</li>
+            <li>Carteira — entrega completa do módulo principal</li>
           </ul>
         </div>
         <div class="timeline-card">
-          <div class="tc-days">Dias 5–8</div>
-          <div class="tc-title">Desenvolvimento e Deploy</div>
+          <div class="tc-days">Semanas 3–4</div>
+          <div class="tc-title">Módulos Estruturais</div>
           <ul class="tc-list">
-            <li>Front-end completo com componentes visuais próprios</li>
-            <li>Integração com subdomínio e configuração do DNS</li>
-            <li>Portal funcional publicado no servidor existente</li>
+            <li>EEmovel, Mapa e Orçamentos e Pedidos</li>
+            <li>Favoritos, Oportunidades 360° e Serviços</li>
+            <li>Cadastros Gerais, Veículos e KPI</li>
+          </ul>
+        </div>
+        <div class="timeline-card">
+          <div class="tc-days">Semanas 5–6</div>
+          <div class="tc-title">Relatórios e Configurações</div>
+          <ul class="tc-list">
+            <li>Painéis avançados de Relatórios</li>
+            <li>Exportação de dados e customizações</li>
+            <li>Configurações e preferências por usuário</li>
+          </ul>
+        </div>
+        <div class="timeline-card">
+          <div class="tc-days">Semanas 7–8</div>
+          <div class="tc-title">Protótipo Navegável</div>
+          <ul class="tc-list">
+            <li>Simulação interativa de alta fidelidade</li>
+            <li>Ajustes finais conforme feedback</li>
+            <li>Handoff completo com documentação</li>
           </ul>
         </div>
         <div class="timeline-card full">
-          <div class="tc-days">Entrega Final — Dia 8</div>
-          <div class="tc-title">Template + Documentação</div>
+          <div class="tc-days">Garantia de Qualidade — Contínua</div>
+          <div class="tc-title">Metodologia de Revisão</div>
           <ul class="tc-list">
-            <li>Memorial no ar, testado e validado</li>
-            <li>Template base entregue para replicação em novos casos com suporte do desenvolvedor</li>
-            <li>Handoff completo com guia de uso</li>
+            <li>Reuniões estratégicas a cada ciclo de entrega com apresentação ao vivo</li>
+            <li>Revisões ilimitadas durante as reuniões de apresentação de cada módulo</li>
+            <li>Aprovação módulo a módulo — sem surpresas no final do projeto</li>
           </ul>
         </div>
       </div>
@@ -1270,73 +1199,74 @@
         <span class="slash">/</span>
         <span class="name">Valor</span>
       </div>
-      <h2 class="section-title reveal">Investimento & Escalabilidade</h2>
-      <p class="section-lead reveal">Um MVP criado uma vez e monetizado em todos os casos futuros.</p>
-
+      <h2 class="section-title reveal">Investimento & <em>Condições.</em></h2>
+      <p class="section-lead reveal">8+ anos de experiência em UX/UI. Um ecossistema visual robusto em modelo de parceria comercial.</p>
 
       <div class="invest-main reveal">
-        <div class="im-subtitle">A. Setup de Implementação</div>
-        <h1 class="im-title"
+        <div class="im-subtitle">Design de Interface — Ecossistema Completo</div>
+        <h3 class="im-title"
           style="font-family: 'Playfair Display', serif; font-style: italic; font-size: clamp(28px, 4vw, 42px); font-weight: 700; line-height: 1.1; margin-bottom: 6px; color: var(--white);">
-          Memorial Completo (com senha)</h1>
-        <div class="im-tag">Investimento Único · MVP</div>
-        <div class="im-desc">Implementação completa do memorial jurídico digital com 7 seções integradas,
-          sistema de acesso por senha, configuração de subdomínio e template base para replicação por novos casos com
-          suporte de desenvolvedor.
-        </div>
-        <div class="im-market-label">Valor de Mercado</div>
-        <div class="im-market-price">R$ 5.600</div>
+          Plataforma Global CRM</h3>
+        <div class="im-tag">120 Telas · Desktop + Mobile · Figma + Protótipo Navegável</div>
+        <div class="im-desc">Arquitetura completa do ecossistema visual do Global CRM com design robusto e moderno, componentização inteligente, experiência multiplataforma e protótipo navegável de alto impacto para validação de negócio e apresentação a investidores.</div>
+        <div class="im-market-label">Valor Estimado de Mercado</div>
+        <div class="im-market-price">R$ 14.000</div>
         <div class="im-divider"></div>
-        <div class="im-final-label">Investimento — Proposta MVP</div>
-        <div class="im-final-price">R$ 3.500</div>
-        <div class="im-final-note">50% na aprovação · 50% na entrega. PIX ou Cartão.</div>
+        <div class="im-final-label">Investimento — Acordo de Parceria</div>
+        <div class="im-final-price">R$ 4.500</div>
+        <div class="im-final-note">Diluído em 3 parcelas mensais · 67% abaixo do valor de mercado</div>
       </div>
 
-      <div class="replica-card reveal">
-        <div class="replica-left">
-          <div class="rl-label">B. Replicação por Caso</div>
-          <div class="rl-title">Cada novo memorial a partir do template existente</div>
-          <div class="rl-desc">Contexto atualizado + subdomínio configurado + ajustes visuais · requer desenvolvedor ·
-            entrega em até 3 dias</div>
+      <div class="parcelas-grid reveal">
+        <div class="parcela-card">
+          <div class="pc-label">Sinal</div>
+          <div class="pc-timing">Início Imediato</div>
+          <div class="pc-value">R$ 1.500</div>
+          <div class="pc-desc">Ativa o projeto e kickoff estratégico</div>
         </div>
-        <div class="replica-price">R$ 1.000 / caso</div>
+        <div class="parcela-card">
+          <div class="pc-label">2ª Parcela</div>
+          <div class="pc-timing">+30 dias</div>
+          <div class="pc-value">R$ 1.500</div>
+          <div class="pc-desc">Módulo Vendas + início Módulos Estruturais</div>
+        </div>
+        <div class="parcela-card">
+          <div class="pc-label">3ª Parcela</div>
+          <div class="pc-timing">+60 dias</div>
+          <div class="pc-value">R$ 1.500</div>
+          <div class="pc-desc">Quitação no encerramento do projeto</div>
+        </div>
       </div>
 
       <table class="scale-table reveal">
         <thead>
           <tr>
-            <th>Cenário</th>
-            <th>Custo de replicação</th>
-            <th>Receita gerada</th>
+            <th>Entregável</th>
+            <th>Parcela</th>
+            <th>Valor</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>MVP — 1º memorial (este projeto)</td>
-            <td>R$ 3.500 (desenvolvimento)</td>
-            <td>Produto validado</td>
+            <td>Kickoff + Módulo de Vendas completo</td>
+            <td>Sinal — início imediato</td>
+            <td>R$ 1.500</td>
           </tr>
           <tr>
-            <td>3 memoriais replicados</td>
-            <td>R$ 3.000 (3 × R$ 1.000)</td>
-            <td>MVP pago</td>
+            <td>Módulos Estruturais (EEmovel, Mapa, KPI e demais)</td>
+            <td>30 dias</td>
+            <td>R$ 1.500</td>
           </tr>
           <tr>
-            <td>10 memoriais replicados</td>
-            <td>R$ 10.000 (10 × R$ 1.000)</td>
-            <td>R$ 10.000 gerados</td>
-          </tr>
-          <tr>
-            <td>20 memoriais replicados</td>
-            <td>R$ 20.000 (20 × R$ 1.000)</td>
-            <td>Produto em escala total</td>
+            <td>Relatórios, Configurações + Protótipo Navegável</td>
+            <td>60 dias — encerramento</td>
+            <td>R$ 1.500</td>
           </tr>
           <tr style="border-top: 2px solid var(--border-card);">
-            <td style="color: var(--gold); font-weight: 500;">SISTEMA DRAW MEMORIAL<br><span
-                style="font-size: 11px; color: var(--white-dim); font-weight: 300;">Plataforma própria — replicação sem
-                desenvolvedor</span></td>
-            <td style="color: var(--white-dim);">R$ 16.000</td>
-            <td style="color: var(--gold); font-weight: 600;">∞</td>
+            <td style="color: var(--gold); font-weight: 500;">Total do Projeto<br><span
+                style="font-size: 11px; color: var(--white-dim); font-weight: 300;">120 telas · Design Robusto · Protótipo · Documentação</span></td>
+            <td style="color: var(--white-dim);">3 parcelas mensais</td>
+            <td style="color: var(--gold); font-weight: 600; font-size: 16px;">R$ 4.500</td>
           </tr>
         </tbody>
       </table>
@@ -1347,13 +1277,11 @@
   <section class="cta-section">
     <div class="container">
       <div class="cta-box reveal">
-        <div class="cta-title">Seu MVP de Memorial Jurídico Escalável em 8 Dias.</div>
-        <div class="cta-subtitle">Você não está comprando dó um site. Está adquirindo ativo digital seguro e altamente
-          escalável.</div>
-        <div class="cta-note">Estou à disposição para ajustar detalhes finais.</div>
-        <a href="https://wa.me/5561982389962?text=Ol%C3%A1!%20Proposta%20aprovada%20%E2%9C%85%0A%0AQuero%20avan%C3%A7ar%20com%20o%20Memorial%20Jur%C3%ADdico%20Digital%20%E2%80%94%20Draw%20the%20Case.%0ADispon%C3%ADvel%20para%20alinhar%20os%20pr%C3%B3ximos%20passos."
-          class="cta-btn" target="_blank" rel="noopener">
-          Aprovar Proposta <span class="arrow">→</span>
+        <div class="cta-title">O Global CRM pronto para impressionar investidores em 8 semanas.</div>
+        <div class="cta-subtitle">Não apenas um sistema que funciona bem no código — uma ferramenta percebida como premium e indispensável.</div>
+        <div class="cta-note">Disponível para alinhar detalhes e iniciar imediatamente após aprovação.</div>
+        <a href="https://wa.me/5561982389962" class="cta-btn" target="_blank" rel="noopener">
+          Aprovar via WhatsApp <span class="arrow">→</span>
         </a>
         <div class="cta-valid">Proposta válida por 2 dias a partir do envio.</div>
       </div>
@@ -1374,19 +1302,19 @@
               fill="#00B271" />
           </svg></div>
       </div>
-      <div class="fb-tag">Tecnologia a favor da sua causa.</div>
+      <div class="fb-name">Arthur Meireles</div>
+      <div class="fb-tag">Senior UX/UI Designer | Atrium Design Studio</div>
     </div>
     <div class="footer-center">
-      <div class="fc-for">Proposta exclusiva · Documento Confidencial</div>
+      <div class="fc-for">Proposta Exclusiva · Documento Confidencial</div>
     </div>
     <div class="footer-right">
-      <div class="fr-doc">Documento Confidencial</div>
+      <div class="fr-doc">Plataforma Global CRM</div>
       <div class="fr-date">Abril de 2026</div>
     </div>
   </footer>
 
   <script>
-    // Reveal on scroll
     const reveals = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((e, i) => {
